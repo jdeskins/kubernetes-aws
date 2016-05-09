@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-node
+    track: test
+  name: hello-node-thrasher
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: hello-node
+    spec:
+      containers:
+      - name: hello-node
+        image: jdeskins/hello-node:thrasher
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-node-svc
+  labels:
+    app: hello-node
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+  selector:
+    app: hello-node
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-node
+    track: stable
+  name: hello-node
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      run: hello-node
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: hello-node
+        track: stable
+    spec:
+      containers:
+      - name: hello-node-v1
+        image: jdeskins/hello-node:1.0
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "128Mi"
