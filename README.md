@@ -18,7 +18,7 @@ After the container is built, you can run it by:
 ```
 
 This will place you at the command prompt and you can run k8s commands directly 
-or run ./init-cluster.sh to create the kubernetes cluster.
+or run ./create-cluster.sh to create the kubernetes cluster.
 
 It doesn't currently run the build script automatically to allow for container debugging while this is still
 relatively new.
