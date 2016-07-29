@@ -37,6 +37,55 @@ kubectl get nodes
 ### Create Deployment
 
 ```
+kubectl apply -f deployments/helloworld/helloworld-v1.yaml
+```
+
+Display services with wide output to view external address:
+```
+kubectl get svc -o wide
+```
+
+### Scale
+
+Scale the application to 3 replicas
+```
+kubectl scale deployment hello-node --replicas=4
+```
+
+View the pods created:
+```
+kubectl get pods -o wide
+```
+
+See the labels:
+```
+kubectl get pods --show-labels=true
+```
+
+### Update the Image
+
+You can run the following in a separate terminal to see the version numbers change as the update is rolled out.
+```
+while true; do curl http://[EXTERNAL_ADDRESS]:8080/version; sleep .5; done
+```
+
+Run the update:
+```
+kubectl apply -f deployments/helloworld/helloworld-v2.yaml
+```
+
+You should see the version number change as the rolling update takes place.
+
+
+### Delete the deployment:
+```
+kubectl delete service,deployment hello-node
+```
+
+
+### Without Configuration Files
+A simple way to launch containers without using a configuration file
+```
 kubectl run hello-node --image=jdeskins/hello-node:1.0 --port=8080
 ```
 
@@ -57,6 +106,11 @@ View the pods created:
 kubectl get pods -o wide
 ```
 
+See the labels:
+```
+kubectl get pods --show-labels=true
+```
+
 ### Update the Image
 
 You can run the following in a separate terminal to see the version numbers change as the update is rolled out.
@@ -72,45 +126,6 @@ kubectl set image deployment/hello-node hello-node=jdeskins/hello-node:2.0
 Delete the deployment:
 ```
 kubectl delete service,deployment hello-node
-```
-
-
-
-## Another example
-
-```
-kubectl create -f deployments/nginx/all-in-one.yaml
-```
-This creates the service and deployment.
-
-View the pods:
-```
-kubectl get pods
-kubectl get pods -o wide    #displays more info
-kubectl get pods -l run=my-nginx -o json    #displays in json
-```
-
-Get external address:
-```
-kubectl get svc -o wide
-```
-
-To view the stdout / stderr from a pod run:
-```
-kubectl logs <POD-NAME>
-```
-
-### Scale
-```
-kubectl scale deployment my-nginx --replicas=3
-kubectl get deployments
-kubectl get pods
-```
-
-### Delete Deployment
-```
-kubectl delete deployment my-nginx
-kubectl delete svc my-nginx
 ```
 
 ## Delete Cluster

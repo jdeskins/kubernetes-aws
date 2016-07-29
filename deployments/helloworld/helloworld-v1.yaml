@@ -20,7 +20,7 @@ metadata:
     track: stable
   name: hello-node
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       run: hello-node
@@ -36,7 +36,7 @@ spec:
         track: stable
     spec:
       containers:
-      - name: hello-node-v1
+      - name: hello-node
         image: jdeskins/hello-node:1.0
         ports:
         - containerPort: 8080
