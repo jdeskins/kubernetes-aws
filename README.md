@@ -37,24 +37,74 @@ kubectl get nodes
 ### Create Deployment
 
 ```
-kubectl create -f deployments/nginx/run-my-nginx.yaml
+kubectl run hello-node --image=jdeskins/hello-node:1.0 --port=8080
 ```
 
-View status of pods in json
+Allow the service to be accessible behind a load balancer:
 ```
-kubectl get pods -l run=my-nginx -o json
-```
-
-kubectl get svc
-
-Create service:
-```
-kubectl create -f deployments/nginx/nginx-svc.yaml
+kubectl expose deployment hello-node --type="LoadBalancer"
 ```
 
-To get external address:
+### Scale
+
+Scale the application to 3 replicas
+```
+kubectl scale deployment hello-node --replicas=3
+```
+
+View the pods created:
+```
+kubectl get pods -o wide
+```
+
+### Update the Image
+
+You can run the following in a separate terminal to see the version numbers change as the update is rolled out.
+```
+while true; do curl http://[EXTERNAL_ADDRESS]:8080/version; sleep .5; done
+```
+
+Run the update:
+```
+kubectl set image deployment/hello-node hello-node=jdeskins/hello-node:2.0
+```
+
+Delete the deployment:
+```
+kubectl delete service,deployment hello-node
+```
+
+
+
+## Another example
+
+```
+kubectl create -f deployments/nginx/all-in-one.yaml
+```
+This creates the service and deployment.
+
+View the pods:
+```
+kubectl get pods
+kubectl get pods -o wide    #displays more info
+kubectl get pods -l run=my-nginx -o json    #displays in json
+```
+
+Get external address:
 ```
 kubectl get svc -o wide
+```
+
+To view the stdout / stderr from a pod run:
+```
+kubectl logs <POD-NAME>
+```
+
+### Scale
+```
+kubectl scale deployment my-nginx --replicas=3
+kubectl get deployments
+kubectl get pods
 ```
 
 ### Delete Deployment
