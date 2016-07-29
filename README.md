@@ -37,7 +37,17 @@ kubectl get nodes
 ### Create Deployment
 
 ```
-kubectl apply -f deployments/helloworld/helloworld-v1.yaml
+kubectl create -f deployments/helloworld/helloworld-v1.yaml
+```
+
+You can view the status of the pods by running:
+```
+kubectl get pods
+```
+
+Add the wide output flag to see the nodes:
+```
+kubectl get pods -o wide
 ```
 
 Display services with wide output to view external address:
@@ -76,6 +86,10 @@ kubectl apply -f deployments/helloworld/helloworld-v2.yaml
 
 You should see the version number change as the rolling update takes place.
 
+### Rollback the Update
+```
+kubectl rollout undo deployment/hello-node
+```
 
 ### Delete the deployment:
 ```
