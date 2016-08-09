@@ -7,6 +7,7 @@ This example uses the jdeskins/node-demo:1.0 Docker image that is publically ava
 To build your own, run the following command using the name you want.  Replace the image
 name in web-deployment-v1.yaml file.
 ```
+cd src
 docker build -t jdeskins/node-demo:1.0 .
 ```
 
