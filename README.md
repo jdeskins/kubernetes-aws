@@ -11,24 +11,42 @@ You can build the container by running:
 This will create the jdeskins/kubernetes-aws image.  To change the name of the image, edit build.sh and run.sh
 to what name you prefer.
 
-After the container is built, you can run it by:
+## Custom Settings
+
+The [env.list](env.list) file contains settings you can override.  These variables are used when Kubernetes is creating
+the cluster on the cloud provider.
+
+
+## Environment
+
+When ready to create the cluster, you can run the following command which will place you inside a running
+Docker container with the Kubernetes environment specified in the Dockerfile:
 
 ```
 ./run.sh
 ```
 
-This will create a "kubeconfig" directory on the local host - which is mapped to /root/.kube directory 
-in the running container.  This will store the credentials needed for accessing the cluster.
+To use a particular AWS profile in ~/.aws/credentials when creating the cluster, then set the 
+AWS_DEFAULT_PROFILE environment variable to that profile name.  Run the following to use that variable:
+```
+export AWS_DEFAULT_PROFILE=profile_name
+./run-with-profile.sh
+```
+
+This will also create a "kubeconfig" directory on the local host - which is mapped to /root/.kube directory 
+in the running container.  The credentials needed for accessing the cluster will be stored in that location.
 
 
 ## Create Cluster
+ 
+To create a new cluster from inside the running container, execute:
+```
+./scripts/create-cluster.sh
+```
+ 
+This will automatically create the kubernetes cluster based on the values in the [env.list](env.list) file.
 
-When you run the Docker container, you will be placed at the command prompt where you can run k8s commands directly 
-or run ./scripts/create-cluster.sh to automatically create the kubernetes cluster based on the values 
-in the env.list file.
-
-After the script has created the cluster, you can check the node status.
-
+After the cluster is created, you can check the node status.
 ```
 kubectl get nodes
 ```

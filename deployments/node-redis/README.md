@@ -5,7 +5,7 @@ Run Node.js web app with Redis master and multiple slaves within a Kubernetes cl
 ## Build the Docker image
 This example uses the jdeskins/node-demo:1.0 Docker image that is publically available.
 To build your own, run the following command using the name you want.  Replace the image
-name in web-deployment-v1.yaml file.
+name in web-deployment-v1.yaml file.  You will also need to push the image to a public repo.
 ```
 cd src
 docker build -t jdeskins/node-demo:1.0 .
