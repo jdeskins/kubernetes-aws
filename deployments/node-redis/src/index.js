@@ -11,7 +11,6 @@ var redis = require('haredis')
 app.get('/', function(req, res, next) {
     client.incr('counter', function(err, counter) {
         if(err) return next(err);
-        //log.info('Counter was incremented to: ' + counter);
         res.set('Content-Type', 'text/html');
         res.send('<h2>This page has been viewed ' + counter + ' times!</h2>');
     });
