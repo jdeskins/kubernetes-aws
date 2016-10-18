@@ -2,18 +2,18 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: hello-node
+    app: hello-app
     track: test
-  name: hello-node-thrasher
+  name: hello-app-thrasher
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        run: hello-node
+        run: hello-app
     spec:
       containers:
-      - name: hello-node
+      - name: hello-app
         image: jdeskins/hello-node:thrasher
         resources:
           requests:

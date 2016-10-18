@@ -2,14 +2,14 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: hello-node
+    app: hello-app
     track: stable
-  name: hello-node
+  name: hello-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      run: hello-node
+      run: hello-app
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,12 +19,19 @@ spec:
   template:
     metadata:
       labels:
-        run: hello-node
+        run: hello-app
         track: stable
     spec:
       containers:
-      - name: hello-node
+      - name: hello-app
         image: jdeskins/hello-node:2.0
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 250m
+            memory: 64Mi
         ports:
         - containerPort: 8080
         livenessProbe:

@@ -77,7 +77,7 @@ kubectl get svc -o wide
 
 Scale the application to 3 replicas
 ```
-kubectl scale deployment hello-node --replicas=4
+kubectl scale deployment hello-app --replicas=4
 ```
 
 View the pods created:
@@ -106,31 +106,31 @@ You should see the version number change as the rolling update takes place.
 
 ### Rollback the Update
 ```
-kubectl rollout undo deployment/hello-node
+kubectl rollout undo deployment/hello-app
 ```
 
 ### Delete the deployment:
 ```
-kubectl delete service,deployment hello-node
+kubectl delete service,deployment hello-app
 ```
 
 
 ### Without Configuration Files
 A simple way to launch containers without using a configuration file
 ```
-kubectl run hello-node --image=jdeskins/hello-node:1.0 --port=8080
+kubectl run hello-app --image=jdeskins/hello-node:1.0 --port=8080
 ```
 
 Allow the service to be accessible behind a load balancer:
 ```
-kubectl expose deployment hello-node --type="LoadBalancer"
+kubectl expose deployment hello-app --type="LoadBalancer"
 ```
 
 ### Scale
 
 Scale the application to 3 replicas
 ```
-kubectl scale deployment hello-node --replicas=3
+kubectl scale deployment hello-app --replicas=3
 ```
 
 View the pods created:
@@ -152,12 +152,12 @@ while true; do curl http://[EXTERNAL_ADDRESS]:8080/version; sleep .5; done
 
 Run the update:
 ```
-kubectl set image deployment/hello-node hello-node=jdeskins/hello-node:2.0
+kubectl set image deployment/hello-app hello-app=jdeskins/hello-node:2.0
 ```
 
 Delete the deployment:
 ```
-kubectl delete service,deployment hello-node
+kubectl delete service,deployment hello-app
 ```
 
 ## Delete Cluster

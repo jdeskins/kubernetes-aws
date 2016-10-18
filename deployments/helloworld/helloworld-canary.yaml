@@ -2,14 +2,14 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    app: hello-node
+    app: hello-app
     track: canary
-  name: hello-node
+  name: hello-app
 spec:
   replicas: 4
   selector:
     matchLabels:
-      run: hello-node
+      run: hello-app
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,11 +18,11 @@ spec:
   template:
     metadata:
       labels:
-        run: hello-node
+        run: hello-app
         track: canary
     spec:
       containers:
-      - name: hello-node
+      - name: hello-app
         image: jdeskins/hello-node:2.0
         ports:
         - containerPort: 8080

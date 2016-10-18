@@ -1,3 +1,3 @@
 #!/bin/bash
 
-curl -sS https://get.k8s.io | MULTIZONE=true KUBERNETES_PROVIDER=aws bash
+export KUBERNETES_PROVIDER=aws; curl -sS https://get.k8s.io | bash

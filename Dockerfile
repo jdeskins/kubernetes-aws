@@ -2,10 +2,13 @@ FROM ubuntu:15.10
 
 RUN apt-get update && apt-get install -y \
     curl \
+    git \
+    groff \
     openssh-server \
     python3 \
     python3-pip \
-    wget && \
+    wget \
+    vim && \
     rm -rf /var/lib/apt/lists/*
 
 # make some useful symlinks that are expected to exist
@@ -17,7 +20,7 @@ RUN mkdir /project
 WORKDIR /project
 
 # Install Kubernetes
-RUN curl -SLO https://github.com/kubernetes/kubernetes/releases/download/v1.4.0/kubernetes.tar.gz && \
+RUN curl -SLO https://github.com/kubernetes/kubernetes/releases/download/v1.4.3/kubernetes.tar.gz && \
   tar xzvf kubernetes.tar.gz && \
   rm kubernetes.tar.gz
 
