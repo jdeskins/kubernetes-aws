@@ -1,0 +1,19 @@
+kubectl apply -f deployments/helloworld/helloworld-v1.yaml
+
+kubectl get pods -o wide
+
+kubectl get svc -o wide
+
+kubectl scale deployment hello-app --replicas=4
+
+watch kubectl get pods -o wide
+
+
+# ROLLING UPDATE
+
+while true; do curl <EXTERNAL_URL>:8080/version; sleep .5; done
+
+kubectl apply -f deployments/helloworld/helloworld-v2.yaml
+
+watch kubectl get pods -o wide
+
