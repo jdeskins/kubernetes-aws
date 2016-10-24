@@ -75,7 +75,7 @@ kubectl get svc -o wide
 
 ### Scale
 
-Scale the application to 3 replicas
+Scale the application to 4 replicas
 ```
 kubectl scale deployment hello-app --replicas=4
 ```
