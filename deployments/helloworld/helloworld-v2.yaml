@@ -48,9 +48,5 @@ spec:
             scheme: HTTP
           initialDelaySeconds: 5
           timeoutSeconds: 1
-        resources:
-          limits:
-            cpu: "500m"
-            memory: "128Mi"
 #      nodeSelector:
 #        app: demo
