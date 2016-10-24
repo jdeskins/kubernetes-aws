@@ -24,7 +24,6 @@ RUN curl -SLO https://github.com/kubernetes/kubernetes/releases/download/v1.4.3/
   tar xzvf kubernetes.tar.gz && \
   rm kubernetes.tar.gz
 
-ADD deployments /project/deployments
 ADD scripts /project/scripts
 
 ENV PATH /project/scripts:$PATH
