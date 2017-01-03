@@ -6,6 +6,6 @@
   "dependencies": {
     "express": "^4.12.3",
     "haredis": "^0.2.15",
-    "redis": "^0.12.1"
+    "redis": "^2.6.3"
   }
 }
