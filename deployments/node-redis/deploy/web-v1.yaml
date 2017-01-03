@@ -7,8 +7,8 @@ metadata:
 spec:
   # if your cluster supports it, use type: LoadBalancer to automatically create
   # an external load-balanced IP for the frontend service.
-  type: LoadBalancer
-  # type: NodePort
+  #type: LoadBalancer
+  type: NodePort
   ports:
   - port: 8080
   selector:
@@ -23,7 +23,7 @@ metadata:
     track: stable
   name: node-demo
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       run: node-demo
@@ -60,5 +60,5 @@ spec:
           timeoutSeconds: 1
         resources:
           limits:
-            cpu: "500m"
+            cpu: "200m"
             memory: "128Mi"

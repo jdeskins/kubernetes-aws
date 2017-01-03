@@ -28,7 +28,7 @@ metadata:
 spec:
   # this replicas value is default
   # modify it according to your case
-  replicas: 3
+  replicas: 2
   # selector can be applied automatically
   # from the labels in the pod template if not set
   # selector:
@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
       - name: slave
-        image: redis:2.8.23
+        image: redis:3.2-alpine
         args:
           - "--slaveof redis-master 6379"
           - "--slave-read-only no"
