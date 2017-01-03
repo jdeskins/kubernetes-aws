@@ -20,7 +20,7 @@ RUN mkdir /project
 WORKDIR /project
 
 # Install Kubernetes
-RUN curl -SLO https://github.com/kubernetes/kubernetes/releases/download/v1.4.3/kubernetes.tar.gz && \
+RUN curl -SLO https://github.com/kubernetes/kubernetes/releases/download/v1.5.1/kubernetes.tar.gz && \
   tar xzvf kubernetes.tar.gz && \
   rm kubernetes.tar.gz
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=v1.4.0
+VERSION=1.5.1
 
 docker build -t jdeskins/kubernetes-aws:${VERSION} .
 
